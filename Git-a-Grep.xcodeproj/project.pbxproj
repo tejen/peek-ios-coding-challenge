@@ -11,6 +11,7 @@
 		655A851C26AC096E00219F5A /* RepoResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655A851A26AC096E00219F5A /* RepoResultCell.xib */; };
 		655A851F26AC0D4200219F5A /* RepoResultCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A851E26AC0D4200219F5A /* RepoResultCellModel.swift */; };
 		655A852126AC0DA600219F5A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A852026AC0DA600219F5A /* Repository.swift */; };
+		655A852826AC212B00219F5A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A852726AC212B00219F5A /* SearchViewModel.swift */; };
 		65ED21D426ABFD390078C5BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ED21D326ABFD390078C5BE /* AppDelegate.swift */; };
 		65ED21D626ABFD390078C5BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ED21D526ABFD390078C5BE /* SceneDelegate.swift */; };
 		65ED21D826ABFD390078C5BE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ED21D726ABFD390078C5BE /* SearchViewController.swift */; };
@@ -24,6 +25,7 @@
 		655A851A26AC096E00219F5A /* RepoResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoResultCell.xib; sourceTree = "<group>"; };
 		655A851E26AC0D4200219F5A /* RepoResultCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoResultCellModel.swift; sourceTree = "<group>"; };
 		655A852026AC0DA600219F5A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		655A852726AC212B00219F5A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		65ED21D026ABFD390078C5BE /* Git-a-Grep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Git-a-Grep.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65ED21D326ABFD390078C5BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65ED21D526ABFD390078C5BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				655A851E26AC0D4200219F5A /* RepoResultCellModel.swift */,
+				655A852726AC212B00219F5A /* SearchViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			files = (
 				655A851B26AC096E00219F5A /* RepoResultCell.swift in Sources */,
 				655A851F26AC0D4200219F5A /* RepoResultCellModel.swift in Sources */,
+				655A852826AC212B00219F5A /* SearchViewModel.swift in Sources */,
 				65ED21D826ABFD390078C5BE /* SearchViewController.swift in Sources */,
 				65ED21D426ABFD390078C5BE /* AppDelegate.swift in Sources */,
 				65ED21D626ABFD390078C5BE /* SceneDelegate.swift in Sources */,

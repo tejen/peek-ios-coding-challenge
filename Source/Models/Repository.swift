@@ -7,6 +7,6 @@
 
 import Foundation
 
-class Repository {
-    
+struct Repository {
+    var name: String!
 }

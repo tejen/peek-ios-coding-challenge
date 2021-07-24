@@ -5,12 +5,14 @@
 //  Created by Tejen Hasmukh Patel on 7/24/21.
 //
 
-import Foundation
+import UIKit
 
-class RepoResultCellModel {
+struct RepoResultCellModel {
+    
+    let name: String
     
     init(with repository: Repository) {
-        
+        name = repository.name
     }
     
 }

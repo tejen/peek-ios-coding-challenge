@@ -14,6 +14,12 @@ class RepoResultCell: UITableViewCell {
 
     @IBOutlet weak var testLabel: UILabel!
     
+    var viewModel: RepoResultCellModel! {
+        didSet {
+            configure()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,8 +35,14 @@ class RepoResultCell: UITableViewCell {
         return UINib(nibName: RepoResultCell.nibName, bundle: nil)
     }
     
-    func configure(with viewModel: RepoResultCellModel) {
-        testLabel.text = "Test"
+    func configure() {
+        prepareForReuse()
+        testLabel.text = viewModel.name
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        testLabel.text = nil
     }
     
 }
