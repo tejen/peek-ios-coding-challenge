@@ -33,3 +33,4 @@ DerivedData
 
 # CocoaPods
 Pods
+/Source/Global/GitHubAPIKey.txt
