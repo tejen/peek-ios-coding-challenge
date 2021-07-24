@@ -11,6 +11,8 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var viewModel = RepoResultCellModel(with: Repository())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
