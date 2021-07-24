@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -159,7 +159,6 @@
 				662756BB7F0D89F9ACF96ABE /* Pods-Git-a-Grep.debug.xcconfig */,
 				AC3C24296FDD5E2C1E4BA712 /* Pods-Git-a-Grep.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -170,6 +169,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65ED21E426ABFD3A0078C5BE /* Build configuration list for PBXNativeTarget "Git-a-Grep" */;
 			buildPhases = (
+				65E2194D26AC2B5D00BDBBAC /* Apollo CLI */,
 				C753080269266AB88C69642A /* [CP] Check Pods Manifest.lock */,
 				65ED21CC26ABFD390078C5BE /* Sources */,
 				65ED21CD26ABFD390078C5BE /* Frameworks */,
@@ -232,6 +232,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		65E2194D26AC2B5D00BDBBAC /* Apollo CLI */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Apollo CLI";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}\"\nGITHUB_API_KEY=$(cat \"./Source/Global/GitHubAPIKey.txt\")\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://api.github.com/graphql\" --header=\"Authorization: Bearer ${GITHUB_API_KEY}\"\n";
+		};
 		9291821B96531DA7E0CEBC0B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
