@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		655A851B26AC096E00219F5A /* RepoResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A851926AC096E00219F5A /* RepoResultCell.swift */; };
+		655A851C26AC096E00219F5A /* RepoResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655A851A26AC096E00219F5A /* RepoResultCell.xib */; };
 		65ED21D426ABFD390078C5BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ED21D326ABFD390078C5BE /* AppDelegate.swift */; };
 		65ED21D626ABFD390078C5BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ED21D526ABFD390078C5BE /* SceneDelegate.swift */; };
-		65ED21D826ABFD390078C5BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ED21D726ABFD390078C5BE /* ViewController.swift */; };
+		65ED21D826ABFD390078C5BE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ED21D726ABFD390078C5BE /* SearchViewController.swift */; };
 		65ED21DB26ABFD390078C5BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65ED21D926ABFD390078C5BE /* Main.storyboard */; };
 		65ED21DD26ABFD3A0078C5BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65ED21DC26ABFD3A0078C5BE /* Assets.xcassets */; };
 		65ED21E026ABFD3A0078C5BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65ED21DE26ABFD3A0078C5BE /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		655A851926AC096E00219F5A /* RepoResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoResultCell.swift; sourceTree = "<group>"; };
+		655A851A26AC096E00219F5A /* RepoResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoResultCell.xib; sourceTree = "<group>"; };
 		65ED21D026ABFD390078C5BE /* Git-a-Grep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Git-a-Grep.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65ED21D326ABFD390078C5BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65ED21D526ABFD390078C5BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		65ED21D726ABFD390078C5BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		65ED21D726ABFD390078C5BE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		65ED21DA26ABFD390078C5BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65ED21DC26ABFD3A0078C5BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65ED21DF26ABFD3A0078C5BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -37,6 +41,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		655A851426AC08EF00219F5A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				65ED21DE26ABFD3A0078C5BE /* LaunchScreen.storyboard */,
+				65ED21D926ABFD390078C5BE /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		655A851526AC08FA00219F5A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				65ED21D726ABFD390078C5BE /* SearchViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		655A851626AC090A00219F5A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				655A851926AC096E00219F5A /* RepoResultCell.swift */,
+				655A851A26AC096E00219F5A /* RepoResultCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		655A851726AC091000219F5A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		655A851826AC091F00219F5A /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				65ED21D326ABFD390078C5BE /* AppDelegate.swift */,
+				65ED21D526ABFD390078C5BE /* SceneDelegate.swift */,
+				65ED21DC26ABFD3A0078C5BE /* Assets.xcassets */,
+				65ED21E126ABFD3A0078C5BE /* Info.plist */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
 		65ED21C726ABFD390078C5BE = {
 			isa = PBXGroup;
 			children = (
@@ -56,13 +104,11 @@
 		65ED21D226ABFD390078C5BE /* Git-a-Grep */ = {
 			isa = PBXGroup;
 			children = (
-				65ED21D326ABFD390078C5BE /* AppDelegate.swift */,
-				65ED21D526ABFD390078C5BE /* SceneDelegate.swift */,
-				65ED21D726ABFD390078C5BE /* ViewController.swift */,
-				65ED21D926ABFD390078C5BE /* Main.storyboard */,
-				65ED21DC26ABFD3A0078C5BE /* Assets.xcassets */,
-				65ED21DE26ABFD3A0078C5BE /* LaunchScreen.storyboard */,
-				65ED21E126ABFD3A0078C5BE /* Info.plist */,
+				655A851826AC091F00219F5A /* Global */,
+				655A851726AC091000219F5A /* Models */,
+				655A851626AC090A00219F5A /* Views */,
+				655A851526AC08FA00219F5A /* View Controllers */,
+				655A851426AC08EF00219F5A /* Storyboards */,
 			);
 			path = "Git-a-Grep";
 			sourceTree = "<group>";
@@ -124,6 +170,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				655A851C26AC096E00219F5A /* RepoResultCell.xib in Resources */,
 				65ED21E026ABFD3A0078C5BE /* LaunchScreen.storyboard in Resources */,
 				65ED21DD26ABFD3A0078C5BE /* Assets.xcassets in Resources */,
 				65ED21DB26ABFD390078C5BE /* Main.storyboard in Resources */,
@@ -137,7 +184,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65ED21D826ABFD390078C5BE /* ViewController.swift in Sources */,
+				655A851B26AC096E00219F5A /* RepoResultCell.swift in Sources */,
+				65ED21D826ABFD390078C5BE /* SearchViewController.swift in Sources */,
 				65ED21D426ABFD390078C5BE /* AppDelegate.swift in Sources */,
 				65ED21D626ABFD390078C5BE /* SceneDelegate.swift in Sources */,
 			);
@@ -288,7 +336,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UBH739J24U;
-				INFOPLIST_FILE = "Git-a-Grep/Info.plist";
+				INFOPLIST_FILE = "Git-a-Grep/Global/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,7 +355,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UBH739J24U;
-				INFOPLIST_FILE = "Git-a-Grep/Info.plist";
+				INFOPLIST_FILE = "Git-a-Grep/Global/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
