@@ -31,7 +31,10 @@ class SearchViewModel {
     
     func initFetch() {
         self.isLoading = true
-        // fetch data
+        self.cellViewModels.append(RepoResultCellModel(with: Repository(name: "Test 1")))
+        self.cellViewModels.append(RepoResultCellModel(with: Repository(name: "Test 2")))
+        self.cellViewModels.append(RepoResultCellModel(with: Repository(name: "Test 3")))
+        self.cellViewModels.append(RepoResultCellModel(with: Repository(name: "Test 4")))
         self.isLoading = false
     }
     
