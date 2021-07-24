@@ -29,4 +29,8 @@ class RepoResultCell: UITableViewCell {
         return UINib(nibName: RepoResultCell.nibName, bundle: nil)
     }
     
+    func configure(with viewModel: RepoResultCellModel) {
+        testLabel.text = "Test"
+    }
+    
 }
