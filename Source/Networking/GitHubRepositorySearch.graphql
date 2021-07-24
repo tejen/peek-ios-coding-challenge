@@ -1,0 +1,17 @@
+query search {
+  search(query: "Test", type: REPOSITORY, first: 10) {
+    edges {
+      node {
+        ... on Repository {
+          id
+          name
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      startCursor
+      endCursor
+    }
+  }
+}

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		35456566A96AC015BB6ACB29 /* Pods_Git_a_Grep.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A946697917342978B3CB7153 /* Pods_Git_a_Grep.framework */; };
+		653979B426AC44CF0054F54E /* GitHubAPIKey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 653979B326AC44CF0054F54E /* GitHubAPIKey.txt */; };
+		6551EDF426AC3DF300B2B729 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6551EDF326AC3DF300B2B729 /* API.swift */; };
+		6551EDF626AC3E4E00B2B729 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6551EDF526AC3E4E00B2B729 /* Network.swift */; };
 		655A851B26AC096E00219F5A /* RepoResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A851926AC096E00219F5A /* RepoResultCell.swift */; };
 		655A851C26AC096E00219F5A /* RepoResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655A851A26AC096E00219F5A /* RepoResultCell.xib */; };
 		655A851F26AC0D4200219F5A /* RepoResultCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A851E26AC0D4200219F5A /* RepoResultCellModel.swift */; };
@@ -22,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		653979B326AC44CF0054F54E /* GitHubAPIKey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GitHubAPIKey.txt; sourceTree = "<group>"; };
+		6551EDF126AC3DE200B2B729 /* GitHubRepositorySearch.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GitHubRepositorySearch.graphql; sourceTree = "<group>"; };
+		6551EDF326AC3DF300B2B729 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		6551EDF526AC3E4E00B2B729 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		655A851926AC096E00219F5A /* RepoResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoResultCell.swift; sourceTree = "<group>"; };
 		655A851A26AC096E00219F5A /* RepoResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoResultCell.xib; sourceTree = "<group>"; };
 		655A851E26AC0D4200219F5A /* RepoResultCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoResultCellModel.swift; sourceTree = "<group>"; };
@@ -52,6 +59,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6551EDEB26AC3A9B00B2B729 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				653979B326AC44CF0054F54E /* GitHubAPIKey.txt */,
+				6551EDF126AC3DE200B2B729 /* GitHubRepositorySearch.graphql */,
+				6551EDF526AC3E4E00B2B729 /* Network.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		655A851426AC08EF00219F5A /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				655A851826AC091F00219F5A /* Global */,
+				6551EDEB26AC3A9B00B2B729 /* Networking */,
 				655A851726AC091000219F5A /* Models */,
 				655A851626AC090A00219F5A /* Views */,
 				655A851D26AC0D1C00219F5A /* View Models */,
@@ -169,8 +187,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65ED21E426ABFD3A0078C5BE /* Build configuration list for PBXNativeTarget "Git-a-Grep" */;
 			buildPhases = (
-				65E2194D26AC2B5D00BDBBAC /* Apollo CLI */,
 				C753080269266AB88C69642A /* [CP] Check Pods Manifest.lock */,
+				65E2194D26AC2B5D00BDBBAC /* Apollo CLI */,
 				65ED21CC26ABFD390078C5BE /* Sources */,
 				65ED21CD26ABFD390078C5BE /* Frameworks */,
 				65ED21CE26ABFD390078C5BE /* Resources */,
@@ -225,6 +243,7 @@
 				655A851C26AC096E00219F5A /* RepoResultCell.xib in Resources */,
 				65ED21E026ABFD3A0078C5BE /* LaunchScreen.storyboard in Resources */,
 				65ED21DD26ABFD3A0078C5BE /* Assets.xcassets in Resources */,
+				653979B426AC44CF0054F54E /* GitHubAPIKey.txt in Resources */,
 				65ED21DB26ABFD390078C5BE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,7 +267,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}\"\nGITHUB_API_KEY=$(cat \"./Source/Global/GitHubAPIKey.txt\")\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://api.github.com/graphql\" --header=\"Authorization: Bearer ${GITHUB_API_KEY}\"\n";
+			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}\"\nGITHUB_API_KEY=$(cat \"./Source/Networking/GitHubAPIKey.txt\")\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://api.github.com/graphql\" --header=\"Authorization: Bearer ${GITHUB_API_KEY}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=\"../Source/Networking/*.graphql\" --localSchemaFile=\"schema.json\" \"../Source/Networking/API.swift\"\n";
 		};
 		9291821B96531DA7E0CEBC0B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -301,7 +320,9 @@
 				655A852826AC212B00219F5A /* SearchViewModel.swift in Sources */,
 				65ED21D826ABFD390078C5BE /* SearchViewController.swift in Sources */,
 				65ED21D426ABFD390078C5BE /* AppDelegate.swift in Sources */,
+				6551EDF626AC3E4E00B2B729 /* Network.swift in Sources */,
 				65ED21D626ABFD390078C5BE /* SceneDelegate.swift in Sources */,
+				6551EDF426AC3DF300B2B729 /* API.swift in Sources */,
 				655A852126AC0DA600219F5A /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

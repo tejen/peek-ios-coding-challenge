@@ -34,3 +34,5 @@ DerivedData
 # CocoaPods
 Pods
 /Source/Global/GitHubAPIKey.txt
+/Git-a-Grep/schema.json
+/Source/Networking/API.swift
