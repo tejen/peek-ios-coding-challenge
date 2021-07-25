@@ -1,1 +1,5 @@
+💡 Delete this message and paste in your GitHub Personal Access Token into this file :)
 
+Ensure that this file contains only your token (starting with "ghp_") and nothing else.
+
+Trailing newlines/whitespace is okay and will be ignored.
