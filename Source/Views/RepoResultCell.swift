@@ -22,6 +22,13 @@ class RepoResultCell: UITableViewCell {
             configure()
         }
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        leftImageView.layer.cornerRadius = 10
+        leftImageView.clipsToBounds = true
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
