@@ -26,7 +26,12 @@ class RepoResultCell: UITableViewCell {
     
     var viewModel: RepoResultCellViewModel! {
         didSet {
-            configure()
+            prepareForReuse()
+            
+            titleLabel.text = viewModel.title
+            authorLabel.text = viewModel.subtitle
+            starsLabel.text = viewModel.disclosure
+            leftImageView.sd_setImage(with: viewModel.imageUrl)
         }
     }
     
@@ -49,17 +54,6 @@ class RepoResultCell: UITableViewCell {
     
     static func nib() -> UINib {
         return UINib(nibName: RepoResultCell.nibName, bundle: nil)
-    }
-    
-    // - MARK: Delegate Methods for View Model
-    
-    func configure() {
-        prepareForReuse()
-        
-        titleLabel.text = viewModel.title
-        authorLabel.text = viewModel.subtitle
-        starsLabel.text = viewModel.disclosure
-        leftImageView.sd_setImage(with: viewModel.imageUrl)
     }
     
 }
