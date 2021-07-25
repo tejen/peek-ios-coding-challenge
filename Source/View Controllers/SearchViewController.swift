@@ -7,14 +7,12 @@
 
 import UIKit
 
-/// **Converted from MVC to MVVM using this guide:** https://medium.com/flawless-app-stories/how-to-use-a-model-view-viewmodel-architecture-for-ios-46963c67be1b
-
 class SearchViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var viewModel: SearchViewModel!
+    private var repositories = [Repository]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,28 +21,12 @@ class SearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        viewModel = SearchViewModel()
+        repositories.append(Repository(name: "Test 1"))
+        repositories.append(Repository(name: "Test 2"))
+        repositories.append(Repository(name: "Test 3"))
+        repositories.append(Repository(name: "Test 4"))
         
-        viewModel.updateLoadingStatus = { [weak self] () in
-            DispatchQueue.main.async {
-                let isLoading = self?.viewModel.isLoading ?? false
-                if isLoading {
-                    self?.activityIndicator.startAnimating()
-                    self?.tableView.alpha = 0.0
-                } else {
-                    self?.activityIndicator.stopAnimating()
-                    self?.tableView.alpha = 1.0
-                }
-            }
-        }
-            
-        viewModel.reloadTableViewClosure = { [weak self] () in
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
-        }
-        
-        viewModel.initFetch()
+        activityIndicator.stopAnimating()
     }
 
 }
@@ -52,12 +34,12 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfCells
+        return repositories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RepoResultCell.cellIdentifier) as! RepoResultCell
-        cell.viewModel = viewModel.getCellViewModel(at: indexPath)
+        cell.repository = repositories[indexPath.row]
         return cell
     }
     

@@ -13,9 +13,7 @@
 		6551EDF626AC3E4E00B2B729 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6551EDF526AC3E4E00B2B729 /* Network.swift */; };
 		655A851B26AC096E00219F5A /* RepoResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A851926AC096E00219F5A /* RepoResultCell.swift */; };
 		655A851C26AC096E00219F5A /* RepoResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655A851A26AC096E00219F5A /* RepoResultCell.xib */; };
-		655A851F26AC0D4200219F5A /* RepoResultCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A851E26AC0D4200219F5A /* RepoResultCellModel.swift */; };
 		655A852126AC0DA600219F5A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A852026AC0DA600219F5A /* Repository.swift */; };
-		655A852826AC212B00219F5A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A852726AC212B00219F5A /* SearchViewModel.swift */; };
 		65D66BA826AC49DE0095BE45 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D66BA726AC49DE0095BE45 /* UserManager.swift */; };
 		65D66BAA26AC49FA0095BE45 /* UserManagementInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D66BA926AC49FA0095BE45 /* UserManagementInterceptor.swift */; };
 		65D66BAC26AC4A090095BE45 /* NetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D66BAB26AC4A090095BE45 /* NetworkInterceptorProvider.swift */; };
@@ -34,9 +32,7 @@
 		6551EDF526AC3E4E00B2B729 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		655A851926AC096E00219F5A /* RepoResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoResultCell.swift; sourceTree = "<group>"; };
 		655A851A26AC096E00219F5A /* RepoResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoResultCell.xib; sourceTree = "<group>"; };
-		655A851E26AC0D4200219F5A /* RepoResultCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoResultCellModel.swift; sourceTree = "<group>"; };
 		655A852026AC0DA600219F5A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		655A852726AC212B00219F5A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		65D66BA726AC49DE0095BE45 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		65D66BA926AC49FA0095BE45 /* UserManagementInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementInterceptor.swift; sourceTree = "<group>"; };
 		65D66BAB26AC4A090095BE45 /* NetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterceptorProvider.swift; sourceTree = "<group>"; };
@@ -125,8 +121,6 @@
 		655A851D26AC0D1C00219F5A /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				655A851E26AC0D4200219F5A /* RepoResultCellModel.swift */,
-				655A852726AC212B00219F5A /* SearchViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -327,8 +321,6 @@
 			files = (
 				655A851B26AC096E00219F5A /* RepoResultCell.swift in Sources */,
 				65D66BAA26AC49FA0095BE45 /* UserManagementInterceptor.swift in Sources */,
-				655A851F26AC0D4200219F5A /* RepoResultCellModel.swift in Sources */,
-				655A852826AC212B00219F5A /* SearchViewModel.swift in Sources */,
 				65ED21D826ABFD390078C5BE /* SearchViewController.swift in Sources */,
 				65ED21D426ABFD390078C5BE /* AppDelegate.swift in Sources */,
 				65D66BAC26AC4A090095BE45 /* NetworkInterceptorProvider.swift in Sources */,

@@ -14,7 +14,7 @@ class RepoResultCell: UITableViewCell {
 
     @IBOutlet weak var testLabel: UILabel!
     
-    var viewModel: RepoResultCellModel! {
+    var repository: Repository! {
         didSet {
             configure()
         }
@@ -37,7 +37,7 @@ class RepoResultCell: UITableViewCell {
     
     func configure() {
         prepareForReuse()
-        testLabel.text = viewModel.name
+        testLabel.text = repository.name
     }
     
     override func prepareForReuse() {
