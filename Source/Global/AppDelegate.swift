@@ -15,17 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        /// Testing Apollo & connection to GitHub GraphQL API v4. Works as of this commit, list of latest repositories are coming in from the GitHub firehose!
-        Network.shared.apollo.fetch(query: SearchQuery()) { result in
-            switch result {
-            case .success(let graphQLResult):
-                print("Success! Result: \(graphQLResult)")
-            case .failure(let error):
-                print("Failure! Error: \(error)")
-            }
-        }
-        // TODO: remove the test code above
-        
         return true
     }
 

@@ -14,7 +14,7 @@ class RepoResultCell: UITableViewCell {
 
     @IBOutlet weak var testLabel: UILabel!
     
-    var repository: Repository! {
+    var repository: SearchQuery.Data.Search.Edge.Node.AsRepository! {
         didSet {
             configure()
         }
