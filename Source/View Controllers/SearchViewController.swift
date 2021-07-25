@@ -9,12 +9,6 @@ import UIKit
 
 /// **Converted from MVC to MVVM using this tutorial:** https://medium.com/flawless-app-stories/how-to-use-a-model-view-viewmodel-architecture-for-ios-46963c67be1b
 
-protocol SearchControllerDelegate {
-    var searchBar: UISearchBar! { get }
-    func didStartLoading()
-    func didEndLoading()
-}
-
 class SearchViewController: UIViewController, SearchControllerDelegate {
     
     // - MARK: IBOutlets
