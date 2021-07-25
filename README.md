@@ -22,7 +22,7 @@ The following **additional** features are implemented:
 * [X] UI animations
 * [X] Loading activity indicator
 * [X] Ability to search for custom queries other than `graphql`
-* [X] App Icons for every iPhone model and size.
+* [X] Launch Screen + App Icons for every iPhone model and size
 * [X] Large scroll-sensitive animated Title above View Controller
 * [ ] A details screen upon tapping on a Repository (not implemented)
 * [ ] What else could ya do?
@@ -37,7 +37,7 @@ The following **additional** features are implemented:
 ## 🎥 Video Walkthrough 
 
 #### Here's a walkthrough of implemented user stories on an *iPhone*:
-<img src='https://i.imgur.com/PVseepG.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/XfaEvmE.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIFs created with [LiceCap](http://www.cockos.com/licecap/).
 
