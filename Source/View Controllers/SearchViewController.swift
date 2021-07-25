@@ -12,13 +12,13 @@ class SearchViewController: UIViewController {
     // - MARK: IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // - MARK: Properties
     
     private var repositories = [SearchQuery.Data.Search.Edge.Node.AsRepository]()
     private var cursorPosition: String?
     private var isMoreDataLoading = false
+    private var loadingMoreView: InfiniteScrollActivityView?
     
     // - MARK: Lifecycle Methods
     
@@ -29,11 +29,23 @@ class SearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        // prepare ui state before initial Loading animation
-        tableView.alpha = 0
-        activityIndicator.alpha = 0
+        // prepare ui state for loading animation before initial load
+        tableView.separatorStyle = .none
         
+        // programmatically create an Activity Indicator and add it to bottom of the TableView...
+        let frame = CGRect(x: 0,
+                           y: tableView.contentSize.height,
+                           width: tableView.bounds.size.width,
+                           height: InfiniteScrollActivityView.defaultHeight)
+        loadingMoreView = InfiniteScrollActivityView(frame: frame)
+        loadingMoreView!.isHidden = true
+        tableView.addSubview(loadingMoreView!)
         
+        var insets = tableView.contentInset
+        insets.bottom += InfiniteScrollActivityView.defaultHeight
+        tableView.contentInset = insets
+        
+        // fetch the initial search results
         fetchRepositories()
     }
     
@@ -76,20 +88,22 @@ class SearchViewController: UIViewController {
     
     func didStartLoading() {
         isMoreDataLoading = true
-        activityIndicator.startAnimating()
-        UIView.animate(withDuration: 0.2) { [self] in
-            activityIndicator.alpha = 1
-        }
+        
+        // Update position of loadingMoreView (move it to the bottom of the TableView)
+        let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+        loadingMoreView?.frame = frame
+        // Start the Activity Indicator within the loadingMoreView
+        loadingMoreView!.startAnimating()
     }
     
     func didEndLoading() {
         isMoreDataLoading = false
-        UIView.animate(withDuration: 0.2) { [self] in
-            activityIndicator.alpha = 0
-            tableView.alpha = 1
-        } completion: { [self] _ in
-            activityIndicator.stopAnimating()
-        }
+        
+        // Stop the Activity Indicator at the bottom of the TableView
+        loadingMoreView!.stopAnimating()
+        
+        // Show separators
+        tableView.separatorStyle = .singleLine
     }
 }
 
