@@ -1,16 +1,20 @@
-query search {
-  search(query: "Test", type: REPOSITORY, first: 10) {
+query Search($query:String!, $limit: Int!, $afterCursor:String) {
+  search(query: $query, type: REPOSITORY, first: $limit, after: $afterCursor) {
     edges {
       node {
         ... on Repository {
           id
           name
+          owner {
+            avatarUrl
+            login
+          }
+          stargazerCount
         }
       }
     }
     pageInfo {
       hasNextPage
-      startCursor
       endCursor
     }
   }

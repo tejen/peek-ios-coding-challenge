@@ -28,7 +28,7 @@ class SearchViewController: UIViewController {
         activityIndicator.startAnimating()
         
         Network.shared.apollo
-            .fetch(query: SearchQuery()) { [weak self] result in
+            .fetch(query: SearchQuery(query: "graphql", limit: 10)) { [weak self] result in
             
             guard let self = self else {
                 return

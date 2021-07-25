@@ -12,23 +12,18 @@ class RepoResultCell: UITableViewCell {
     static let cellIdentifier = "RepoResultCell"
     static let nibName = cellIdentifier
 
-    @IBOutlet weak var testLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var leftImageView: UIImageView!
     
     var repository: SearchQuery.Data.Search.Edge.Node.AsRepository! {
         didSet {
             configure()
         }
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     static func nib() -> UINib {
@@ -37,12 +32,15 @@ class RepoResultCell: UITableViewCell {
     
     func configure() {
         prepareForReuse()
-        testLabel.text = repository.name
+        authorLabel.text = repository.owner.login
+        titleLabel.text = repository.name
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        testLabel.text = nil
+        titleLabel.text = nil
+        authorLabel.text = nil
+        leftImageView.image = nil
     }
     
 }
