@@ -18,6 +18,7 @@ class SearchViewController: UIViewController {
     
     private var repositories = [SearchQuery.Data.Search.Edge.Node.AsRepository]()
     private var cursorPosition: String?
+    private var isMoreDataLoading = false
     
     // - MARK: Lifecycle Methods
     
@@ -74,6 +75,7 @@ class SearchViewController: UIViewController {
     // - MARK: UI Helper Methods
     
     func didStartLoading() {
+        isMoreDataLoading = true
         activityIndicator.startAnimating()
         UIView.animate(withDuration: 0.2) { [self] in
             activityIndicator.alpha = 1
@@ -81,6 +83,7 @@ class SearchViewController: UIViewController {
     }
     
     func didEndLoading() {
+        isMoreDataLoading = false
         UIView.animate(withDuration: 0.2) { [self] in
             activityIndicator.alpha = 0
             tableView.alpha = 1
@@ -104,13 +107,24 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // ** tableview is preparing to display its last row **
-        
-        // load more results into the end of the tableview, to allow for infinite scrolling
-        if indexPath.row + 1 == self.repositories.count {
-            fetchRepositories(afterCursor: cursorPosition)
+}
+
+extension SearchViewController: UIScrollViewDelegate {
+    
+    // - MARK: ScrollView Delegate Methods
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // this powers the Infinite Scrolling functionality
+        if (!isMoreDataLoading) {
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            // Check how far down the user has scrolled
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+                // User has scrolled past the threshold!
+                // Request more results from API...
+                fetchRepositories(afterCursor: cursorPosition)
+            }
         }
     }
-    
 }
