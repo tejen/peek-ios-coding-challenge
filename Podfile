@@ -7,5 +7,6 @@ target 'Git-a-Grep' do
 
   # Pods for Git-a-Grep
   pod 'Apollo', '~> 0.45' # GraphQL client to interface with the GitHub API
+  pod 'SDWebImage', '~> 5.11' # helper library to load images by URL, such as a GitHub user avatar
 
 end
