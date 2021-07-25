@@ -12,6 +12,7 @@ class SearchViewController: UIViewController {
     // - MARK: IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     // - MARK: Properties
     
@@ -27,9 +28,15 @@ class SearchViewController: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         
+        // initialize TableView
         tableView.register(RepoResultCell.nib(), forCellReuseIdentifier: RepoResultCell.cellIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // initialize SearchBar
+        searchBar.delegate = self
+        // set initial search query
+        searchBar.text = "graphql"
         
         // prepare ui state for loading animation before initial load
         tableView.separatorStyle = .none
@@ -57,7 +64,7 @@ class SearchViewController: UIViewController {
         didStartLoading()
         
         Network.shared.apollo
-            .fetch(query: SearchQuery(query: "graphql", limit: 25, afterCursor: afterCursor)) { [weak self] result in
+            .fetch(query: SearchQuery(query: searchBar.text ?? "", limit: 25, afterCursor: afterCursor)) { [weak self] result in
             
             guard let self = self else {
                 return
@@ -92,7 +99,11 @@ class SearchViewController: UIViewController {
         isMoreDataLoading = true
         
         // Update position of loadingMoreView (move it to the bottom of the TableView)
-        let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+        let isTableViewEmpty = tableView.indexPathsForVisibleRows?.count ?? 0 < 1
+        let frameY = isTableViewEmpty ? tableView.frame.height / 2 - searchBar.frame.height : tableView.contentSize.height
+        let frame = CGRect(x: 0, y: frameY,
+                           width: tableView.bounds.size.width,
+                           height: InfiniteScrollActivityView.defaultHeight)
         loadingMoreView?.frame = frame
         
         // Start the Activity Indicator at the bottom of the TableView
@@ -104,6 +115,8 @@ class SearchViewController: UIViewController {
     
     func didEndLoading() {
         isMoreDataLoading = false
+        
+        tableView.separatorStyle = .singleLine
         
         // Stop the Activity Indicator at the bottom of the TableView
         loadingMoreView!.stopAnimating()
@@ -147,5 +160,30 @@ extension SearchViewController: UIScrollViewDelegate {
                 fetchRepositories(afterCursor: cursorPosition)
             }
         }
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    // - MARK: SearchBar Delegate Methods
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        cursorPosition = nil
+        
+        guard !(searchBar.text ?? "").trimmingCharacters(in: .whitespaces).isEmpty else {
+            return
+        }
+        
+        searchBar.resignFirstResponder()
+        
+        // Clear the entire TableView (animated)
+        repositories.removeAll()
+        tableView.beginUpdates()
+        tableView.deleteSections([0], with: .fade)
+        tableView.insertSections([0], with: .fade)
+        tableView.endUpdates() // this triggers the above animations to remove all rows
+        tableView.separatorStyle = .none // will be reverted momentarily by didEndLoading...
+        tableView.reloadData() // this applies the above change to separatorStyle
+        
+        fetchRepositories()
     }
 }
