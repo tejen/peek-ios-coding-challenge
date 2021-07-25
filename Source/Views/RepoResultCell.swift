@@ -16,6 +16,7 @@ class RepoResultCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var leftImageView: UIImageView!
+    @IBOutlet weak var starsLabel: UILabel!
     
     var repository: SearchQuery.Data.Search.Edge.Node.AsRepository! {
         didSet {
@@ -42,6 +43,7 @@ class RepoResultCell: UITableViewCell {
         prepareForReuse()
         authorLabel.text = repository.owner.login
         titleLabel.text = repository.name
+        starsLabel.text = String(describing: repository.stargazerCount)
         leftImageView.sd_setImage(with: URL(string: repository.owner.avatarUrl))
     }
     
@@ -49,6 +51,7 @@ class RepoResultCell: UITableViewCell {
         super.prepareForReuse()
         titleLabel.text = nil
         authorLabel.text = nil
+        starsLabel.text = nil
         leftImageView.image = nil
     }
     
