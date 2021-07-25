@@ -12,7 +12,7 @@ class SearchControllerViewModel {
     
     // - MARK: Properties
     
-    private var delegate: SearchControllerProtocol!
+    private var delegate: SearchControllerDelegate!
     private var client: ApolloClient!
     
     private var searchResults = [Repository]()
@@ -25,7 +25,7 @@ class SearchControllerViewModel {
     
     // - MARK: Initializers
     
-    init(delegate: SearchControllerProtocol) {
+    init(delegate: SearchControllerDelegate) {
         self.delegate = delegate
     }
     
