@@ -92,8 +92,12 @@ class SearchViewController: UIViewController {
         // Update position of loadingMoreView (move it to the bottom of the TableView)
         let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
         loadingMoreView?.frame = frame
-        // Start the Activity Indicator within the loadingMoreView
+        
+        // Start the Activity Indicator at the bottom of the TableView
         loadingMoreView!.startAnimating()
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.beginFromCurrentState]) { [self] in
+            loadingMoreView!.alpha = 1
+        }
     }
     
     func didEndLoading() {
@@ -101,6 +105,7 @@ class SearchViewController: UIViewController {
         
         // Stop the Activity Indicator at the bottom of the TableView
         loadingMoreView!.stopAnimating()
+        loadingMoreView!.alpha = 0 // prepare for the next time it appears (alpha would animate back to 1 at that time)
         
         // Show separators
         tableView.separatorStyle = .singleLine
