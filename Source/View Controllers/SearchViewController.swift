@@ -13,6 +13,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var repositories = [SearchQuery.Data.Search.Edge.Node.AsRepository]()
+    private var cursorPosition: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +25,11 @@ class SearchViewController: UIViewController {
         fetchRepositories()
     }
 
-    func fetchRepositories() {
+    func fetchRepositories(afterCursor: String? = nil) {
         activityIndicator.startAnimating()
         
         Network.shared.apollo
-            .fetch(query: SearchQuery(query: "graphql", limit: 10)) { [weak self] result in
+            .fetch(query: SearchQuery(query: "graphql", limit: 10, afterCursor: afterCursor)) { [weak self] result in
             
             guard let self = self else {
                 return
@@ -41,7 +42,10 @@ class SearchViewController: UIViewController {
             
             switch result {
             case .success(let graphQLResult):
-                if let repositoryConnection = graphQLResult.data?.search.edges {
+                if let data = graphQLResult.data,
+                   let repositoryConnection = data.search.edges,
+                   let endCursor = data.search.pageInfo.endCursor {
+                    self.cursorPosition = endCursor
                     self.repositories.append(contentsOf: repositoryConnection.compactMap { $0?.node?.asRepository })
                 }
                 
@@ -65,6 +69,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: RepoResultCell.cellIdentifier) as! RepoResultCell
         cell.repository = repositories[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row + 1 == self.repositories.count {
+            fetchRepositories(afterCursor: cursorPosition)
+        }
     }
     
 }
