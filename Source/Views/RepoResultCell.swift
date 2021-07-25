@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class RepoResultCell: UITableViewCell {
     
@@ -34,6 +35,7 @@ class RepoResultCell: UITableViewCell {
         prepareForReuse()
         authorLabel.text = repository.owner.login
         titleLabel.text = repository.name
+        leftImageView.sd_setImage(with: URL(string: repository.owner.avatarUrl))
     }
     
     override func prepareForReuse() {
