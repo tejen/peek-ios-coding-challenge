@@ -41,7 +41,7 @@ class SearchControllerViewModel {
     
     func cellForRowAtIndexPath(_ indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RepoResultCell.cellIdentifier) as! RepoResultCell
-        cell.viewModel = RepoResultCellViewModel(with: searchResults[indexPath.row], delegate: cell)
+        cell.viewModel = RepoResultCellViewModel(with: searchResults[indexPath.row])
         return cell
     }
     

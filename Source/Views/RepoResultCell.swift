@@ -8,11 +8,7 @@
 import UIKit
 import SDWebImage
 
-protocol RepoResultCellProtocol {
-    func configure()
-}
-
-class RepoResultCell: UITableViewCell, RepoResultCellProtocol {
+class RepoResultCell: UITableViewCell {
     
     // - MARK: Static Properties
     
@@ -59,10 +55,11 @@ class RepoResultCell: UITableViewCell, RepoResultCellProtocol {
     
     func configure() {
         prepareForReuse()
-        titleLabel.text = viewModel.repository.name
-        authorLabel.text = viewModel.repository.authorName
-        starsLabel.text = String(format: "%d", locale: Locale.current, viewModel.repository.stargazerCount)
-        leftImageView.sd_setImage(with: viewModel.repository.authorAvatarImageUrl)
+        
+        titleLabel.text = viewModel.title
+        authorLabel.text = viewModel.subtitle
+        starsLabel.text = viewModel.disclosure
+        leftImageView.sd_setImage(with: viewModel.imageUrl)
     }
     
 }
