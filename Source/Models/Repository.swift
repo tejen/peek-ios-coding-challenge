@@ -8,5 +8,15 @@
 import Foundation
 
 struct Repository {
-    var name: String!
+    let name: String
+    let authorName: String
+    let authorAvatarImageUrl: URL
+    let stargazerCount: Int
+    
+    init(from graphQLNode: SearchQuery.Data.Search.Edge.Node.AsRepository) {
+        name = graphQLNode.name
+        authorName = graphQLNode.owner.login
+        authorAvatarImageUrl = URL(string: graphQLNode.owner.avatarUrl)!
+        stargazerCount = graphQLNode.stargazerCount
+    }
 }

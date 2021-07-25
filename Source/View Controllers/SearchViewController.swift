@@ -7,7 +7,15 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+/// **Converted from MVC to MVVM using this tutorial:** https://medium.com/flawless-app-stories/how-to-use-a-model-view-viewmodel-architecture-for-ios-46963c67be1b
+
+protocol SearchControllerProtocol {
+    var searchBar: UISearchBar! { get }
+    func didStartLoading()
+    func didEndLoading()
+}
+
+class SearchViewController: UIViewController, SearchControllerProtocol {
     
     // - MARK: IBOutlets
     
@@ -16,10 +24,8 @@ class SearchViewController: UIViewController {
     
     // - MARK: Properties
     
-    private var repositories = [SearchQuery.Data.Search.Edge.Node.AsRepository]()
-    private var cursorPosition: String?
-    private var isMoreDataLoading = false
-    private var loadingMoreView: InfiniteScrollActivityView?
+    private var viewModel: SearchControllerViewModel!
+    private var loadingIndicatorView: InfiniteScrollActivityView?
     
     // - MARK: Lifecycle Methods
     
@@ -27,6 +33,9 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        // intialize ViewModel
+        viewModel = SearchControllerViewModel(delegate: self)
         
         // initialize TableView
         tableView.register(RepoResultCell.nib(), forCellReuseIdentifier: RepoResultCell.cellIdentifier)
@@ -47,57 +56,21 @@ class SearchViewController: UIViewController {
                            y: tableView.contentSize.height,
                            width: tableView.bounds.size.width,
                            height: InfiniteScrollActivityView.defaultHeight)
-        loadingMoreView = InfiniteScrollActivityView(frame: frame)
-        loadingMoreView!.isHidden = true
-        tableView.addSubview(loadingMoreView!)
+        loadingIndicatorView = InfiniteScrollActivityView(frame: frame)
+        loadingIndicatorView!.isHidden = true
+        tableView.addSubview(loadingIndicatorView!)
         
         var insets = tableView.contentInset
         insets.bottom += InfiniteScrollActivityView.defaultHeight
         tableView.contentInset = insets
         
         // fetch the initial search results
-        fetchRepositories()
+        viewModel.fetchRepositories()
     }
     
-    // - MARK: Data Fetching
-
-    func fetchRepositories(afterCursor: String? = nil) {
-        didStartLoading()
-        
-        Network.shared.apollo
-            .fetch(query: SearchQuery(query: searchBar.text ?? "", limit: 25, afterCursor: afterCursor)) { [weak self] result in
-            
-            guard let self = self else {
-                return
-            }
-            
-            defer {
-                self.tableView.reloadData()
-                self.didEndLoading()
-            }
-            
-            switch result {
-            case .success(let graphQLResult):
-                if let data = graphQLResult.data,
-                   let repositoryConnection = data.search.edges,
-                   let endCursor = data.search.pageInfo.endCursor {
-                    self.cursorPosition = endCursor
-                    self.repositories.append(contentsOf: repositoryConnection.compactMap { $0?.node?.asRepository })
-                }
-                
-                if let errors = graphQLResult.errors {
-                    fatalError("Failure! Error: \(errors.compactMap{$0.localizedDescription})")
-                }
-            case .failure(let error):
-                fatalError("Failure! Error: \(error)")
-            }
-        }
-    }
-    
-    // - MARK: UI Helper Methods
+    // - MARK: Delegate Methods for ViewModel
     
     func didStartLoading() {
-        isMoreDataLoading = true
         
         // Update position of loadingMoreView (move it to the bottom of the TableView)
         let isTableViewEmpty = tableView.indexPathsForVisibleRows?.count ?? 0 < 1
@@ -105,23 +78,23 @@ class SearchViewController: UIViewController {
         let frame = CGRect(x: 0, y: frameY,
                            width: tableView.bounds.size.width,
                            height: InfiniteScrollActivityView.defaultHeight)
-        loadingMoreView?.frame = frame
+        loadingIndicatorView?.frame = frame
         
         // Start the Activity Indicator at the bottom of the TableView
-        loadingMoreView!.startAnimating()
+        loadingIndicatorView!.startAnimating()
         UIView.animate(withDuration: 0.4, delay: 0, options: [.beginFromCurrentState]) { [self] in
-            loadingMoreView!.alpha = 1
+            loadingIndicatorView!.alpha = 1
         }
     }
     
     func didEndLoading() {
-        isMoreDataLoading = false
-        
+        // Refresh cells displayed in TableView
         tableView.separatorStyle = .singleLine
+        tableView.reloadData()
         
         // Stop the Activity Indicator at the bottom of the TableView
-        loadingMoreView!.stopAnimating()
-        loadingMoreView!.alpha = 0 // prepare for the next time it appears (alpha would animate back to 1 at that time)
+        loadingIndicatorView!.stopAnimating()
+        loadingIndicatorView!.alpha = 0 // prepare for the next time it appears (alpha would animate back to 1 at that time)
         
         // Show separators
         tableView.separatorStyle = .singleLine
@@ -132,14 +105,16 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     // - MARK: TableView Delegate Methods
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        viewModel.numberOfSections()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repositories.count
+        viewModel.numberOfRowsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RepoResultCell.cellIdentifier) as! RepoResultCell
-        cell.repository = repositories[indexPath.row]
-        return cell
+        viewModel.cellForRowAtIndexPath(indexPath, tableView: tableView)
     }
     
 }
@@ -150,7 +125,7 @@ extension SearchViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // this powers the Infinite Scrolling functionality
-        if (!isMoreDataLoading) {
+        if (!viewModel.isMoreDataLoading) {
             // Calculate the position of one screen length before the bottom of the results
             let scrollViewContentHeight = tableView.contentSize.height
             let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
@@ -158,7 +133,7 @@ extension SearchViewController: UIScrollViewDelegate {
             if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
                 // User has scrolled past the threshold!
                 // Request more results from API...
-                fetchRepositories(afterCursor: cursorPosition)
+                viewModel.fetchMoreRepositories()
             }
         }
     }
@@ -168,23 +143,22 @@ extension SearchViewController: UISearchBarDelegate {
     // - MARK: SearchBar Delegate Methods
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        cursorPosition = nil
-        
         guard !(searchBar.text ?? "").trimmingCharacters(in: .whitespaces).isEmpty else {
             return
         }
         
+        viewModel.willClearTableView()
+        
         searchBar.resignFirstResponder()
         
         // Clear the entire TableView (animated)
-        repositories.removeAll()
         tableView.beginUpdates()
-        tableView.deleteSections([0], with: .fade)
+        tableView.deleteSections([0], with: .fade) // destroy all existing rows
         tableView.insertSections([0], with: .fade)
         tableView.endUpdates() // this triggers the above animations to remove all rows
         tableView.separatorStyle = .none // will be reverted momentarily by didEndLoading...
         tableView.reloadData() // this applies the above change to separatorStyle
         
-        fetchRepositories()
+        viewModel.fetchRepositories()
     }
 }

@@ -15,6 +15,8 @@
 		655A851C26AC096E00219F5A /* RepoResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655A851A26AC096E00219F5A /* RepoResultCell.xib */; };
 		655A852126AC0DA600219F5A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A852026AC0DA600219F5A /* Repository.swift */; };
 		659F72F026AD815B00142F4B /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659F72EF26AD815B00142F4B /* InfiniteScrollActivityView.swift */; };
+		659F72F226AD960000142F4B /* SearchControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659F72F126AD960000142F4B /* SearchControllerViewModel.swift */; };
+		659F72F426AD970B00142F4B /* RepoResultCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659F72F326AD970B00142F4B /* RepoResultCellViewModel.swift */; };
 		65D66BA826AC49DE0095BE45 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D66BA726AC49DE0095BE45 /* UserManager.swift */; };
 		65D66BAA26AC49FA0095BE45 /* UserManagementInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D66BA926AC49FA0095BE45 /* UserManagementInterceptor.swift */; };
 		65D66BAC26AC4A090095BE45 /* NetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D66BAB26AC4A090095BE45 /* NetworkInterceptorProvider.swift */; };
@@ -35,6 +37,8 @@
 		655A851A26AC096E00219F5A /* RepoResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoResultCell.xib; sourceTree = "<group>"; };
 		655A852026AC0DA600219F5A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		659F72EF26AD815B00142F4B /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
+		659F72F126AD960000142F4B /* SearchControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControllerViewModel.swift; sourceTree = "<group>"; };
+		659F72F326AD970B00142F4B /* RepoResultCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoResultCellViewModel.swift; sourceTree = "<group>"; };
 		65D66BA726AC49DE0095BE45 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		65D66BA926AC49FA0095BE45 /* UserManagementInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementInterceptor.swift; sourceTree = "<group>"; };
 		65D66BAB26AC4A090095BE45 /* NetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterceptorProvider.swift; sourceTree = "<group>"; };
@@ -124,6 +128,8 @@
 		655A851D26AC0D1C00219F5A /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				659F72F126AD960000142F4B /* SearchControllerViewModel.swift */,
+				659F72F326AD970B00142F4B /* RepoResultCellViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -326,8 +332,10 @@
 				65D66BAA26AC49FA0095BE45 /* UserManagementInterceptor.swift in Sources */,
 				65ED21D826ABFD390078C5BE /* SearchViewController.swift in Sources */,
 				65ED21D426ABFD390078C5BE /* AppDelegate.swift in Sources */,
+				659F72F426AD970B00142F4B /* RepoResultCellViewModel.swift in Sources */,
 				65D66BAC26AC4A090095BE45 /* NetworkInterceptorProvider.swift in Sources */,
 				659F72F026AD815B00142F4B /* InfiniteScrollActivityView.swift in Sources */,
+				659F72F226AD960000142F4B /* SearchControllerViewModel.swift in Sources */,
 				6551EDF626AC3E4E00B2B729 /* Network.swift in Sources */,
 				65ED21D626ABFD390078C5BE /* SceneDelegate.swift in Sources */,
 				6551EDF426AC3DF300B2B729 /* API.swift in Sources */,

@@ -12,8 +12,13 @@
 import UIKit
 
 class InfiniteScrollActivityView: UIView {
-    var activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    // - MARK: Properties
+    
+    private var activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
     static let defaultHeight:CGFloat = 60.0
+    
+    // - MARK: Initializers
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,16 +30,22 @@ class InfiniteScrollActivityView: UIView {
         setupActivityIndicator()
     }
     
+    // - MARK: Lifecycle Methods
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         activityIndicatorView.center = CGPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
     }
     
-    func setupActivityIndicator() {
+    // - MARK: Private Helper Methods
+    
+    private func setupActivityIndicator() {
         activityIndicatorView.style = .large
         activityIndicatorView.hidesWhenStopped = true
         self.addSubview(activityIndicatorView)
     }
+    
+    // - MARK: Public Interface
     
     func stopAnimating() {
         self.activityIndicatorView.stopAnimating()
