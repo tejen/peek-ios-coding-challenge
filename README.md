@@ -1,5 +1,9 @@
 # Coding Challenge - *git a grep!* <sup name="a1">[1](#f1)</sup>
 
+[![License](https://img.shields.io/badge/license-Apache%202-blue)](#%EF%B8%8F-license)
+![Swift](https://img.shields.io/badge/%20in-swift%205.3-orange.svg)
+[![Last Updated](https://img.shields.io/github/last-commit/tejen/peek-ios-coding-challenge/mvvm)](https://github.com/tejen/peek-ios-coding-challenge/tree/mvvm)
+
 ***Get a grip** on GitHub with this quick [grep](https://en.wikipedia.org/wiki/Grep) tool.*
 
 Created by: **Tejen Patel**.
@@ -8,7 +12,7 @@ Time spent: **X** hours spent in total.
 
 Objective: Create a basic GitHub repository search app for iOS using MVVM and GraphQL.
 
-:warning: Also see the **[`🔗 mvvm`](https://github.com/tejen/peek-ios-coding-challenge/tree/mvvm)** branch for a refactored version of this project.
+:warning: See also: the **[`🔗 mvvm`](https://github.com/tejen/peek-ios-coding-challenge/tree/mvvm)** branch has a refactored version of this project.
 
 ## 📋 User Stories
 
@@ -32,7 +36,7 @@ The following **additional** features are implemented:
 1. Clone the `main` branch **or** the `mvvm` branch
 1. Run `pod install`
 1. In the `Source ➡️ Networking ➡️ GitHubAPIKey.txt` file, paste in your [Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) from GitHub
-1. Run the app! *It may take a minute for Xcode complete the Apollo Build Scripts (probing GitHub's public API schema, and auto-generating a schema.json and API.swift file)*
+1. Open `Git-a-Grep.xcworkspace` in Xcode and run the app! *It may take a minute for Xcode complete the Apollo Build Scripts (probing GitHub's public API schema, and auto-generating a schema.json and API.swift file)*
 
 ## 🎥 Video Walkthrough 
 
@@ -62,7 +66,7 @@ In terms of GraphQL, this was actually my first foray into that too, and I reali
 
 Excited to hear back from Peek! Looking forward to the opportunity with all hope. ✨
 
-## License
+## 👨‍⚖️ License
 
     Copyright ©2021 Tejen Hasmukh Patel
 
