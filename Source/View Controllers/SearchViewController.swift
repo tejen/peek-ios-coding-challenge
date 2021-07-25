@@ -9,11 +9,17 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    // - MARK: IBOutlets
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // - MARK: Properties
+    
     private var repositories = [SearchQuery.Data.Search.Edge.Node.AsRepository]()
     private var cursorPosition: String?
+    
+    // - MARK: Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +35,8 @@ class SearchViewController: UIViewController {
         
         fetchRepositories()
     }
+    
+    // - MARK: Data Fetching
 
     func fetchRepositories(afterCursor: String? = nil) {
         didStartLoading()
