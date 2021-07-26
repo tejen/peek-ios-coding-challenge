@@ -8,7 +8,7 @@
 import UIKit
 import Apollo
 
-protocol SearchControllerDelegate {
+protocol SearchControllerViewModelDelegate {
     // QUESTION: maybe discontinue use of the Delegate/Protocols paradigm here, in favor of having closure properties in the ViewModel that the Controller can define.
     var searchBar: UISearchBar! { get }
     func didStartLoading()
@@ -19,7 +19,7 @@ class SearchControllerViewModel {
     
     // - MARK: Properties
     
-    private var delegate: SearchControllerDelegate!
+    private var delegate: SearchControllerViewModelDelegate!
     private var client: ApolloClient!
     
     private var searchResults = [Repository]()
@@ -32,7 +32,7 @@ class SearchControllerViewModel {
     
     // - MARK: Initializers
     
-    init(delegate: SearchControllerDelegate) {
+    init(delegate: SearchControllerViewModelDelegate) {
         self.delegate = delegate
     }
     

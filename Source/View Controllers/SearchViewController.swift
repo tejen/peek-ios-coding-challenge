@@ -9,7 +9,7 @@ import UIKit
 
 /// **Converted from MVC to MVVM using this tutorial:** https://medium.com/flawless-app-stories/how-to-use-a-model-view-viewmodel-architecture-for-ios-46963c67be1b
 
-class SearchViewController: UIViewController, SearchControllerDelegate {
+class SearchViewController: UIViewController, SearchControllerViewModelDelegate {
     
     // - MARK: IBOutlets
     
