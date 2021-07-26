@@ -32,6 +32,7 @@ class SearchViewController: UIViewController {
         tableView.register(RepoResultCell.nib(), forCellReuseIdentifier: RepoResultCell.cellIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.keyboardDismissMode = .interactive
         
         // initialize SearchBar
         searchBar.delegate = self
