@@ -8,7 +8,7 @@
 
 Created by: **Tejen Patel**.
 
-Time spent: **X** hours spent in total.
+Time spent: **4.6** hours spent in total.
 
 Objective: Create a basic GitHub repository search app for iOS using MVVM and GraphQL.
 
@@ -54,7 +54,7 @@ I have no experience in the MVVM design pattern, so I'm excited that this projec
 
 I'm not too confident whether I've performed followed MVVM correctly according to its principles, since I've never seen how iOS should be done in MVVM. I think I'm still struggling to understand the fundamentals of MVVM. Particularly, the code separation between the main View Controller and its View Model was my biggest question here... how much of the code should remain in the View Controller, and how much of it should be moved into the a View Model Swift file for it?
 
-I followed some online tutorials and YouTube videos on how to transition from an MVC mindset to MVVM, although all the examples I found were really different from each other haha. I think my approach to converting this app to MVVM (in the [**`🔗 mvvm`**](https://github.com/tejen/peek-ios-coding-challenge/tree/mvvm) branch here) might've made the code seem super convoluted. Hopefully I'm wrong, and this is just how it's supposed to be 😅 either way, I think it was an enjoyable experience to finally get into it and try something new!
+Before starting, I read up a bit on some online tutorials and YouTube videos about how to transition from an MVC mindset to MVVM. Although, all the examples I found were really different from each other haha in terms of how they said MVVM should be done for TableViews and Cells for this kind of app. It was hard to find a single standardized/conventional way of compartmentalizing code and naming things. I think my approach to converting this app to MVVM (in the [**`🔗 mvvm`**](https://github.com/tejen/peek-ios-coding-challenge/tree/mvvm) branch here) might've made the code seem super convoluted. Hopefully I'm wrong, and this is just how it's supposed to be 😅 either way, I think it was an enjoyable experience to finally get into it and try something new!
 
 What I did appreciate was how super compartmentalized the MVVM code is. The Controller, View Model, and View itself are pretty oblivious to each other and to the entire Model/data coming in from the GitHub API. Because of this de-coupling and less tight integration between them all, I definitely realized how MVVM would help in especially large teams, where there would be different people developing each of these classes.
 
