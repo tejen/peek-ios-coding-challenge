@@ -34,7 +34,7 @@ The following **additional** features are implemented:
 
 ## 🚀 Getting Started
 
-1. Clone the `main` branch **or** the `mvvm` branch
+1. Clone the `mvvm` branch **or** the `mvc` branch
 1. Run `pod install`
 1. In the `Source ➡️ Networking ➡️ GitHubAPIKey.txt` file, paste in your [Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) from GitHub
 1. Open `Git-a-Grep.xcworkspace` in Xcode and run the app! *It may take a minute for Xcode complete the Apollo Build Scripts (probing GitHub's public API schema, and auto-generating a schema.json and API.swift file)*
